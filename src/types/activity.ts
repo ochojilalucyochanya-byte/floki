@@ -1,0 +1,154 @@
+export interface TransactionRiskFlag {
+  code: string;
+  label: string;
+  severity: 'low' | 'medium' | 'high';
+}
+
+export interface TransactionRiskSummary {
+  score: number;
+  level: 'low' | 'medium' | 'high';
+  flags: TransactionRiskFlag[];
+  requiresReview: boolean;
+  loggedAt?: Date;
+}
+
+export interface NotificationDelivery {
+  channel: 'email' | 'sms' | 'in_app';
+  status: 'sent' | 'skipped' | 'failed';
+  target?: string;
+  sentAt?: Date;
+  reason?: string;
+}
+
+export type NotificationCategory = 
+  | 'transaction'
+  | 'security'
+  | 'account'
+  | 'compliance'
+  | 'system'
+  | 'marketing';
+
+export type NotificationPriority = 'critical' | 'high' | 'medium' | 'low';
+
+export interface NotificationGroup {
+  category: NotificationCategory;
+  count: number;
+  latestTimestamp: Date;
+  notifications: UserNotification[];
+}
+
+export interface UserNotification {
+  id: string;
+  userId: string;
+  type: 'success' | 'error' | 'warning' | 'info';
+  category: NotificationCategory;
+  priority: NotificationPriority;
+  title: string;
+  message: string;
+  createdAt: Date;
+  readAt?: Date;
+  transferId?: string;
+  metadata?: Record<string, unknown>;
+  deliveries: NotificationDelivery[];
+  groupId?: string;
+  actionUrl?: string;
+  expiresAt?: Date;
+}
+
+export interface SpendingCategory {
+  category: string;
+  value: number;
+  count: number;
+}
+
+export interface SpendingWeek {
+  week: string;
+  sent: number;
+  successful: number;
+  failed: number;
+  count: number;
+}
+
+export interface SpendingMonth {
+  month: string;
+  sent: number;
+  successful: number;
+  failed: number;
+  count: number;
+}
+
+export interface RecipientTrend {
+  recipientName: string;
+  amount: number;
+  count: number;
+  averageAmount: number;
+  lastTransferAt: Date;
+}
+
+export interface TopExpense {
+  id: string;
+  recipientName: string;
+  amount: number;
+  category: string;
+  timestamp: Date;
+  status: 'pending' | 'completed' | 'failed';
+}
+
+export interface SpendingInsights {
+  summary: {
+    totalSent: number;
+    totalFees: number;
+    completedTransfers: number;
+    pendingTransfers: number;
+    failedTransfers: number;
+    flaggedTransfers: number;
+    thisMonthCount: number;
+    thisMonthSent: number;
+    averageTransfer: number;
+    topCategory?: string;
+  };
+  weeklyTransferData: SpendingWeek[];
+  monthlyTransferData: SpendingMonth[];
+  recipientTrends: RecipientTrend[];
+  categoryData: SpendingCategory[];
+  topExpenses: TopExpense[];
+  healthScore?: FinancialHealthScore;
+}
+
+export interface NotificationsResponse {
+  items: UserNotification[];
+  unreadCount: number;
+}
+
+export interface FinancialHealthScore {
+  score: number; // 0-100
+  grade: 'A' | 'B' | 'C' | 'D' | 'F';
+  factors: {
+    spendingConsistency: number;
+    transactionSuccess: number;
+    frequencyPattern: number;
+    riskLevel: number;
+  };
+  recommendations: string[];
+  lastCalculated: Date;
+}
+
+export type RefundStatus = 'pending' | 'processing' | 'completed' | 'failed';
+
+export interface RefundRecord {
+  id: string;
+  transferId: string;
+  userId: string;
+  amount: number;
+  currency: string;
+  reason: string;
+  status: RefundStatus;
+  initiatedAt: Date;
+  completedAt?: Date;
+  recipientName?: string;
+}
+
+export interface RefundsResponse {
+  items: RefundRecord[];
+  total: number;
+}

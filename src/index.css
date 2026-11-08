@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 180 20% 98%;
+    --foreground: 180 25% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 180 25% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 180 25% 10%;
+
+    --primary: 168 80% 32%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 180 15% 94%;
+    --secondary-foreground: 180 25% 20%;
+
+    --muted: 180 10% 92%;
+    --muted-foreground: 180 10% 45%;
+
+    --accent: 168 70% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 70% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --pending: 45 93% 47%;
+    --pending-foreground: 45 93% 20%;
+
+    --border: 180 15% 88%;
+    --input: 180 15% 88%;
+    --ring: 168 80% 32%;
+
+    --radius: 1rem;
+
+    --gradient-primary: linear-gradient(135deg, hsl(168 80% 32%) 0%, hsl(180 70% 35%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(168 80% 32%) 0%, hsl(180 60% 28%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(180 20% 98%) 100%);
+    
+    --shadow-soft: 0 4px 20px -4px hsl(180 25% 10% / 0.08);
+    --shadow-card: 0 2px 12px -2px hsl(180 25% 10% / 0.06);
+    --shadow-button: 0 4px 14px -3px hsl(168 80% 32% / 0.35);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 180 25% 8%;
+    --foreground: 180 10% 95%;
+
+    --card: 180 20% 12%;
+    --card-foreground: 180 10% 95%;
+
+    --popover: 180 20% 12%;
+    --popover-foreground: 180 10% 95%;
+
+    --primary: 168 70% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 180 15% 18%;
+    --secondary-foreground: 180 10% 90%;
+
+    --muted: 180 15% 20%;
+    --muted-foreground: 180 10% 60%;
+
+    --accent: 168 60% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 60% 50%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 85% 55%;
+    --warning-foreground: 0 0% 10%;
+
+    --pending: 45 85% 55%;
+    --pending-foreground: 0 0% 10%;
+
+    --border: 180 15% 22%;
+    --input: 180 15% 22%;
+    --ring: 168 70% 45%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(168 70% 40%) 0%, hsl(180 60% 35%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(168 70% 35%) 0%, hsl(180 55% 25%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(180 20% 12%) 0%, hsl(180 25% 10%) 100%);
+    
+    --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
+    --shadow-card: 0 2px 12px -2px hsl(0 0% 0% / 0.2);
+    --shadow-button: 0 4px 14px -3px hsl(168 70% 45% / 0.4);
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+@layer utilities {
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+  
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  
+  .shadow-button {
+    box-shadow: var(--shadow-button);
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out forwards;
+  }
+}
+
+/* Low-bandwidth mode: suppress most animations/transitions globally. */
+:root[data-bandwidth='low'] *,
+:root[data-bandwidth='low'] *::before,
+:root[data-bandwidth='low'] *::after {
+  animation-duration: 1ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 1ms !important;
+  scroll-behavior: auto !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
